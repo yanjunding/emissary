@@ -56,7 +56,9 @@ endif
 
 # Everything else...
 
-NAME ?= emissary
+EMISSARY_NAME ?= emissary
+LCNAME := $(shell echo $(EMISSARY_NAME) | tr '[:upper:]' '[:lower:]')
+
 _git_remote_urls := $(shell git remote | xargs -n1 git remote get-url --all)
 IS_PRIVATE ?= $(findstring private,$(_git_remote_urls))
 
