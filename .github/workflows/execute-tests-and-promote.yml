@@ -170,6 +170,10 @@ jobs:
           make ci/setup-k3d
       - name: Deploy integration test environment
         run: |
+          export DEV_KUBE_NO_PVC=yes
+          export KAT_REQ_LIMIT=900
+          export DEV_KUBECONFIG=~/.kube/config
+          export DEV_REGISTRY=${{ secrets.DEV_REGISTRY }}
           make python-integration-test-environment
       - name: Run ${{ matrix.test }}
         run: |
