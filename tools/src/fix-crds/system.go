@@ -142,10 +142,13 @@ func Main(args Args, output io.Writer) error {
 	if _, err := io.WriteString(output, "# GENERATED FILE: edits made by hand will not be preserved.\n"); err != nil {
 		return err
 	}
-	for _, crd := range crds {
-		if _, err := io.WriteString(output, "---\n"); err != nil {
-			return err
+	for i, crd := range crds {
+		if i != 0 {
+			if _, err := io.WriteString(output, "---\n"); err != nil {
+				return err
+			}
 		}
+
 		yamlbytes, err := yaml.Marshal(crd)
 		if err != nil {
 			return err
