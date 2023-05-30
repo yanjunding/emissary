@@ -109,6 +109,13 @@ deploy-only: preflight-dev-kubeconfig $(tools/kubectl) build-output/yaml-$(patsu
 	@printf "$(GRN)Your built image:$(END) $(BLD)$$(sed -n 2p docker/$(LCNAME).docker.push.remote)$(END)\n"
 .PHONY: deploy-only
 
+
+.PHONY: apiext-e2e-setup
+apiext-e2e-setup: build-output/yaml-$(patsubst v%,%,$(VERSION))
+	rm -rf build-output/apiext-e2e
+	mkdir -p build-output/apiext-e2e
+	cp build-output/yaml-$(patsubst v%,%,$(VERSION))/emissary-crds.yaml build-output/apiext-e2e
+
 ##############################################
 ##@ Telepresence based runners
 ##############################################
