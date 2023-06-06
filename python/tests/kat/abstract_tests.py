@@ -283,6 +283,8 @@ class AmbassadorTest(Test):
         command = ["docker", "run", "-d", "-l", "kat-family=ambassador", "--name", self.path.k8s]
 
         envs = [
+            "GO_FILTER_ENABLED=false",
+            "GO_FILTER_OBJECT_FILE=",
             "KUBERNETES_SERVICE_HOST=kubernetes",
             "KUBERNETES_SERVICE_PORT=443",
             "AMBASSADOR_SNAPSHOT_COUNT=1",
