@@ -76,14 +76,6 @@ def format(st: str, /, **kwargs):
 imagePullSecrets:
 - name: dev-image-pull-secret
 """
-    test_images = get_images()
-    print("======================")
-    print(st)
-    print("======================")
-    print(test_images)
-    print("======================")
-    print(**kwargs)
-    print("======================")
     return st.format(serviceAccountExtra=serviceAccountExtra, images=get_images(), **kwargs)
 
 
